@@ -78,6 +78,29 @@ class recruitmentMenu{
     waitDeleteCandidate(){
         cy.wait('@DeleteCandidate').its('response.statusCode').should('eq', 200)
     }
+
+    jobTitleFilter(jobTitleFilter){
+        cy.get(':nth-child(1) > .oxd-grid-4 > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text').click()
+        cy.contains('.oxd-select-option', jobTitleFilter).should('be.visible').click()
+    }
+
+    interceptFilterJob(){
+        cy.intercept(
+            'GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/recruitment/candidates?limit=50&offset=0&jobTitleId=8&model=list&sortField=candidate.dateOfApplication&sortOrder=DESC'
+        ).as('FilterJob')
+    }
+
+    clickSearchButton(){
+        cy.get('.oxd-form-actions > .oxd-button--secondary').click()
+    }
+
+    verifyJobFilter(jobTitleFilter){
+        cy.get('.oxd-table-body > :nth-child(1) > .oxd-table-row').should('be.visible').and('contain.text', jobTitleFilter)
+    }
+
+    waitFilterJob(){
+        cy.wait('@FilterJob').its('response.statusCode').should('eq', 200)
+    }
 }
 
 export default new recruitmentMenu()

@@ -6,5 +6,6 @@
     "email": "Test123@gmail.com",
     "number": "123456789",
     "keyword": "Susanto",
-    "notes": "Nothing"
+    "notes": "Nothing",
+    "jobTitleFilter": "QA Lead"
 }
