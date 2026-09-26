@@ -77,7 +77,7 @@ describe ('Verifikasi Filter Kandidat', () => {
     cy.intercept(
             'GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/recruitment/candidates?limit=50&offset=0&hiringManagerId=7&model=list&sortField=candidate.dateOfApplication&sortOrder=DESC'
         ).as('FilterHiringManager')
-    cy.get('.oxd-form-actions > .oxd-button--secondary').click()
+    recruitmentMenu.clickSearchButton()
     cy.get('.oxd-table-body > :nth-child(1) > .oxd-table-row').should('be.visible').and('contain.text', 'manda')
     cy.wait('@FilterHiringManager').its('response.statusCode').should('eq', 200)
   })
@@ -90,7 +90,7 @@ describe ('Verifikasi Filter Kandidat', () => {
     cy.intercept(
             'GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/recruitment/candidates?limit=50&offset=0&status=1&model=list&sortField=candidate.dateOfApplication&sortOrder=DESC'
         ).as('FilterStatus')
-    cy.get('.oxd-form-actions > .oxd-button--secondary').click()
+    recruitmentMenu.clickSearchButton()
     cy.get('.oxd-table-body > :nth-child(1) > .oxd-table-row').should('be.visible').and('contain.text', 'Application Initiated')
     cy.wait('@FilterStatus').its('response.statusCode').should('eq', 200)
   })
@@ -103,7 +103,7 @@ describe ('Verifikasi Filter Kandidat', () => {
     cy.intercept(
             'GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/recruitment/candidates?limit=50&offset=0&status=1&model=list&sortField=candidate.dateOfApplication&sortOrder=DESC'
         ).as('FilterStatus')
-    cy.get('.oxd-form-actions > .oxd-button--secondary').click()
+    recruitmentMenu.clickSearchButton()
     cy.get('.oxd-table-body > :nth-child(1) > .oxd-table-row').should('be.visible').and('contain.text', 'Application Initiated')
     cy.wait('@FilterStatus').its('response.statusCode').should('eq', 200)
     cy.intercept(
