@@ -80,6 +80,7 @@ describe ('Verifikasi Menu Directory', () => {
     directoryMenu.locationFilterAndIntercept(directoryData.location)
     directoryMenu.interceptMessage()
     directoryMenu.clickSearchButton()
+    directoryMenu.verifyMessage()
     directoryMenu.waitMessage()
   })
 })

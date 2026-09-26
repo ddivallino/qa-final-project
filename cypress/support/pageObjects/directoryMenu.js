@@ -102,7 +102,7 @@ class directoryMenu{
     }
 
     verifyMessage(){
-        cy.get('.oxd-toast')
+        cy.get('.oxd-toast').should('exist').and('contain.text', 'No Records')
     }
 
     waitMessage(){
