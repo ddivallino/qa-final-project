@@ -7,5 +7,9 @@
     "number": "123456789",
     "keyword": "Susanto",
     "notes": "Nothing",
-    "jobTitleFilter": "QA Lead"
+    "jobTitleFilter": "QA Lead",
+    "vacancyFilter": "Sales Representative",
+    "hiringManagerFilter": "manda user",
+    "verifyHiringManagerFilter": "manda",
+    "statusFilter": "Application Initiated"
 }

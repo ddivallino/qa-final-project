@@ -101,6 +101,81 @@ class recruitmentMenu{
     waitFilterJob(){
         cy.wait('@FilterJob').its('response.statusCode').should('eq', 200)
     }
+
+    vacancyFilter(vacancyFilter){
+        cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text').click()
+        cy.contains('.oxd-select-option', vacancyFilter).should('be.visible').click()
+    }
+
+    interceptFilterVacancy(){
+        cy.intercept(
+            'GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/recruitment/candidates?limit=50&offset=0&vacancyId=2&model=list&sortField=candidate.dateOfApplication&sortOrder=DESC'
+        ).as('FilterVacancy')
+    }
+
+    verifyVacancyFilter(vacancyFilter){
+        cy.get('.oxd-table-body > :nth-child(1) > .oxd-table-row').should('be.visible').and('contain.text', vacancyFilter)
+    }
+
+    waitFilterVacancy(){
+        cy.wait('@FilterVacancy').its('response.statusCode').should('eq', 200)
+    }
+
+    hiringManagerFilter(hiringManagerFilter){
+        cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text').click()
+        cy.contains('.oxd-select-option', hiringManagerFilter).should('be.visible').click()
+    }
+
+    interceptFilterHiringManager(){
+        cy.intercept(
+            'GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/recruitment/candidates?limit=50&offset=0&hiringManagerId=7&model=list&sortField=candidate.dateOfApplication&sortOrder=DESC'
+        ).as('FilterHiringManager')
+    }
+
+    verifyHiringManagerFilter(verifyHiringManagerFilter){
+        cy.get('.oxd-table-body > :nth-child(1) > .oxd-table-row').should('be.visible').and('contain.text', verifyHiringManagerFilter)
+    }
+
+    waitFilterHiringManager(){
+        cy.wait('@FilterHiringManager').its('response.statusCode').should('eq', 200)
+    }
+
+    statusFilter(statusFilter){
+        cy.get(':nth-child(4) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text').click()
+        cy.contains('.oxd-select-option', statusFilter).should('be.visible').click()
+    }
+
+    interceptFilterStatus(){
+        cy.intercept(
+            'GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/recruitment/candidates?limit=50&offset=0&status=1&model=list&sortField=candidate.dateOfApplication&sortOrder=DESC'
+        ).as('FilterStatus')
+    }
+
+    verifyStatusFilter(statusFilter){
+        cy.get('.oxd-table-body > :nth-child(1) > .oxd-table-row').should('be.visible').and('contain.text', statusFilter)
+    }
+
+    waitFilterStatus(){
+        cy.wait('@FilterStatus').its('response.statusCode').should('eq', 200)
+    }
+
+    interceptFilterReset(){
+        cy.intercept(
+            'GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/recruitment/candidates?limit=50&offset=0&model=list&sortField=candidate.dateOfApplication&sortOrder=DESC'
+        ).as('FilterReset')
+    }
+
+    clickResetButton(){
+        cy.get('.oxd-button--ghost').click()
+    }
+
+    verifyResetFilter(){
+        cy.get('.oxd-table-body').should('be.visible')
+    }
+
+    waitFilterReset(){
+        cy.wait('@FilterReset').its('response.statusCode').should('eq', 200)
+    }
 }
 
 export default new recruitmentMenu()
